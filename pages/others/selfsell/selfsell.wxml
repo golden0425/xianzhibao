@@ -1,0 +1,34 @@
+<wxs module="dateFr" src="../../../utils/dateFr.wxs"></wxs>
+<view hidden="{{judgecontent}}">
+  <view class='dfk'> 
+  <image class='center_pic' src='../../../images/nothing.jpg'></image>
+  您还未上传过商品，点击右下角即可上传
+  </view>
+</view>
+
+<view hidden="{{!judgecontent}}">
+  <view class='backgroundbar'></view>
+    <view class='container'>
+      <view class='template_goods' wx:for="{{goods}}">
+      <view  catchtap='goto' data-bookid='{{item.bookid}}'>
+        <view class='tatle-name'>{{item.name}}</view>
+        <view class='tatle-time'>上传时间：{{dateFr.dateFormat(item.comtime)}}</view>
+        <view class='box'>
+          <view class='box-img'><image src='{{item.book_url}}'></image></view>
+          <view class='box-discription'><view class='box-discription-detail'>{{item.introduce}}</view></view>
+        </view>
+        <view class='floor-total'>
+          <view>共一件商品 我的售价为：</view><view class='pirce'>¥{{item.discountprice}}</view>
+        </view>
+        </view>
+      </view>
+      <view class='description' style='height:30px;width:100%;text-align:center;color:#6E6E6E;font-size:16px;'>
+视时空科技-2019
+</view>
+    </view>
+</view>
+
+<view class='tonewsell' bindtap='tonewsell'>
+  <image class="add_icon" src="../../../images/add.png"></image>
+</view>
+

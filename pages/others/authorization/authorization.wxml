@@ -1,0 +1,17 @@
+<!--pages/others/authorization/authorization.wxml-->
+<!--  -->
+<view>
+<!-- LOGO -->
+  <view class='logo-box'>
+    <image class='authorization-iamge' src="../../../images/xz.png" mode="aspectFit" lazy-load  ></image>
+  </view>
+<!-- 授权按钮和信息 -->
+  <view class='authorization-box'>
+    <view class='authorization-box-msg'>
+      <view>登陆后开发者将获取一些权限</view>
+      <view class='authorization-box-font'> · 获取你的公开信息(昵称、头像等)</view>
+    </view>
+    <button class="authorization-botton" open-type="getUserInfo" bindgetuserinfo="getUserInfo">授权登录</button>
+  </view>
+</view>
+

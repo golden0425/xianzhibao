@@ -1,0 +1,56 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/others/details/details",
+    "pages/self/self",
+    "pages/fenlei/fenlei",
+    "pages/search_page/search_page",
+    "pages/logs/logs",
+    "pages/template/list",
+    "pages/others/mycollections/mycollections",
+    "pages/mysell/mysell",
+    "pages/others/myaddress/myaddress",
+    "pages/others/add_address/add_address",
+    "pages/others/mycards/mycards",
+    "pages/others/myoptions/myoptions",
+    "pages/others/selfsell/selfsell",
+    "pages/others/bookshow/bookshow",
+    "pages/others/authorization/authorization"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "selectedColor": "#F93E02",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home_HL.png"
+      },
+      {
+        "pagePath": "pages/fenlei/fenlei",
+        "text": "分类",
+        "iconPath": "images/classify.png",
+        "selectedIconPath": "images/classify_HL.png"
+      },
+      {
+        "pagePath": "pages/mysell/mysell",
+        "text": "发布",
+        "iconPath": "images/classify.png",
+        "selectedIconPath": "images/classify_HL.png"
+      },
+      {
+        "pagePath": "pages/self/self",
+        "text": "我的",
+        "iconPath": "images/self.png",
+        "selectedIconPath": "images/self_HL.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

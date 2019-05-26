@@ -1,0 +1,31 @@
+/* pages/others/authorization/authorization.wxss */
+.logo-box{
+  padding-top: 100rpx;
+  padding-bottom: 150rpx;
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1rpx solid #ccc;
+}
+.authorization-iamge{
+  height: 200rpx;
+  width: 200rpx;
+}
+.authorization-box{
+  margin-top:50rpx; 
+  font-size:34rpx;
+  font-weight: bold;
+}
+.authorization-box-font{
+  color: #999;
+}
+.authorization-box-msg{
+  margin-left: 50rpx;
+}
+.authorization-botton{
+  margin-top: 50rpx;
+  width: 698rpx;
+  height: 98rpx;
+  background-color:#46CC8F;
+  color: #fff;
+  line-height: 98rpx;
+}

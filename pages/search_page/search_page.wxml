@@ -1,0 +1,56 @@
+<!--pages/search_page/search_page.wxml-->
+<view class="page">
+    <!-- top部分搜索框开始 -->
+        <view class="search-bar">
+            <view class="search-bar__form">
+              <view class='search_bar_line'>
+                  <view class="search-bar__box">
+                      <icon class="icon-search_in-box" type="search" size="14"></icon>
+                      <input type="text" class="search-bar__input" placeholder="请输入要查找的关键字" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" bindconfirm="judge" />
+                      <view class="icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+                          <icon type="clear" size="14"></icon>
+                      </view>
+                  </view>
+              </view>       
+             </view>
+        <!-- top搜索框结束 -->
+        <!-- searchbar-result被修饰 -->
+      <view class="divLine"></view>
+</view>
+
+  <!-- 内容开始 -->
+  <!-- 热门搜索 -->
+<view class='hotsearch'>
+  <view class='title'>热门搜索</view>
+  <view class='contentbox'>
+    <view class='content' wx:for="{{hotsearch}}">
+      <view catchtap='hotsearch' data-index='{{index}}'>{{item.name}}</view>
+    </view>
+  </view>
+</view>
+
+<view class='matchsearch'>
+  <view class='title'>相关搜索</view>
+  <view class='template'>
+    <view wx:for="{{queryresult}}">
+      <view class='template-shoplist' catchtap='matchsearch' data-index='{{index}}'>
+        <view class='image-left'><image src='{{item.book_url}}'></image></view>
+        <view class='shoplist-right'>
+          <view class='right-content'>
+            {{item.name}}
+            {{item.introduce}}
+          </view>
+          <view class='right-price'>
+            <view class='price'>¥{{item.discountprice}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{queryresult.length==0}}">
+      {{sorrytext}}
+    </view>
+  </view>
+</view>
+
+  <!-- 内容结束 -->
+</view>
