@@ -166,3 +166,112 @@ color: red;
   font-size: 25rpx;
   color: #9C9C9C;
 }
+.secondhand{
+  width:100%;
+  height:100%;
+}
+.secondhand>.second_box{
+  height:100%;
+  width: 100%;
+}
+.secondhand>.second_box>view{
+  display: flex;
+  justify-content: space-between;
+  height:80rpx;
+  border-bottom:1rpx solid #f1f1f1;
+}
+.secondhand>.second_box>view>view:nth-child(1){
+width: 30%;
+line-height: 80rpx;
+}
+.secondhand>.second_box>view>view:nth-child(2){
+  width: 70%;
+  line-height: 80rpx;
+  }
+  .secondhand>.second_box>view>view:nth-child(2)>view{
+  width: 100%;
+  line-height: 80rpx;
+  }
+  .secondhand>.second_box>view>view:nth-child(2)>view>view.select_box{
+  width: 100%;
+  line-height: 80rpx;
+  }
+  .secondhand>.second_box>view>view:nth-child(2)>input{
+    width: 100%;
+    height:80rpx;
+    line-height: 80rpx;
+    color:#999;
+    }
+    .btn_box{
+      margin-top:20rpx;
+    }
+.btn_box>button{
+  background:#FFA54F;
+  color:#fff;
+  text-algin:center;
+  height:70rpx;
+    line-height: 70rpx;
+    font-size:28rpx;
+
+  
+}
+label {
+  color:#999;
+}
+
+
+
+/* select 下拉框 开始*/
+.select_box{
+  background: #fff;
+  width: 100%;
+  position: relative;
+}
+.select{
+  box-sizing: border-box;
+  width: 100%;
+  height: 80rpx;
+  color:#999;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  line-height:80rpx;
+}
+.select_text{
+  font-size: 28rpx;
+  flex: 1;
+}
+.select_img{
+  width: 40rpx;
+  height: 40rpx;
+  display: block;
+  transition:transform 0.3s;
+}
+.select_img_rotate{
+  transform:rotate(180deg); 
+}
+.option_box{
+  position: absolute;
+  top: 80rpx;
+  width: 100%;
+  border:1px solid #efefef;
+  box-sizing: border-box;
+  height: 0;
+  overflow-y: auto;
+  border-top: 0;
+  background: #f1f1f1;
+  transition: height 0.3s;
+  z-index:999;
+}
+.option{
+  display: block;
+  line-height: 40rpx;
+  font-size: 28rpx;
+  border-bottom: 1px solid #efefef;
+  padding: 10rpx;
+}
+
+
+
+
+/* select 下拉框结束 */

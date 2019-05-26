@@ -30,9 +30,12 @@ Page({
   getPublishs:function (){
     api.getpublishs().then((res)=>{
       console.log(res)
+      if(res.code==200){
       this.setData({
         publishList:res.data.rows
       });
+      }
+      
     })
   },
   getProductTopThree:()=>{
