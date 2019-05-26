@@ -1,33 +1,38 @@
 /**index.wxss**/
-.top{
+.top {
   width: 750rpx;
 }
-.search_row{
-display: flex;
-justify-content: center;
-flex-direction: row;
-background-color: #ffffff;
-width: 100%;
-margin-bottom:20rpx;
+
+.search_row {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  background-color: #ffffff;
+  width: 100%;
+  margin-bottom: 20rpx;
 }
-.search{
+
+.search {
   border: 1px solid #c1c1c1;
   border-radius: 25rpx;
   width: 80%;
   height: 70%;
 }
-.searchicon{
+
+.searchicon {
   display: flex;
   align-items: center;
   margin-top: 5rpx;
 
 }
-.contain{
+
+.contain {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
-.search_input{
+
+.search_input {
   font-size: 34rpx;
   color: #d0d0d0;
   display: flex;
@@ -36,122 +41,172 @@ margin-bottom:20rpx;
 }
 
 /* 轮播图 */
-.swiper-image{
-  width: 100%; 
+.swiper-image {
+  width: 100%;
   height: 100%;
   background-color: #eeeeee;
 }
 
 /*首页跑马灯效果*/
-.swiper{
- background-color: #FFA54F;
- display: flex;
-justify-content: center;
-flex-direction: row;
+.swiper {
+  background-color: #FFA54F;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
 }
+
 .swiper_container {
- height: 55rpx;
- width: 60vw;
- margin-top: 8rpx;
+  height: 55rpx;
+  width: 60vw;
+  margin-top: 8rpx;
 }
- 
+
 .swiper_item {
- font-size: 30rpx;
- overflow: hidden;
- text-overflow: ellipsis;
- white-space: nowrap;
- letter-spacing: 2px;
+  font-size: 30rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: 2px;
 }
 
 /*首页跑马灯效果*/
 
 /* 模块分区 */
-.list{
-width: 100%;
-height: 380rpx;
-color: black;
-}
- .resoutuijian{
-   margin-top: 10rpx;
-  background-color: #c1c1c1;
-}
- .jingpinhaoshu{
-  background-color: #fff;
-}
-.xinshuremai{
-  background-color: #c1c1c1;
-}
-.jikemiaosha{
-  background-color: #fff;
-}
-.ershouzhuanqu{
-  background-color: #fff;
-}
-
-.list .content_text{
-width: 100%;
-margin-bottom: 5rpx;
-}
-.list .title{
-  margin-left: 20rpx;
-}
-.list .turntodetail{
-float: right;
-margin-right: 20rpx;
-}
-
-.list .content_list{
+.list {
   width: 100%;
-  display: flex;
-  flex-direction: row;
-}
-.list .content_list .example{
-  width: 250rpx;
-  height: 300rpx;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  
-}
-.list .content_list .example .example_list{
-  width: 200rpx;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #d0d0d0;
-  background-color: #ffffff;
-  border-radius: 30rpx;
-  box-shadow: 3px 1px 1px #A8A8A8;
-}
-.top_pic{
- display: flex;
-  flex-direction: row;
-  justify-content: center;
-  height: 140rpx;
-}
-.list .content_list .example_pic{
-  width: 140rpx;
-	height: 140rpx;
-  padding: 15rpx;
-}
-.example_list .introduce{
-  height: 140rpx;
+  height: 380rpx;
   color: black;
-  font-size: 30rpx;
-  margin-top: 15rpx;
+}
+
+.resoutuijian {
+  margin-top: 10rpx;
+  background-color: #c1c1c1;
+}
+
+.jingpinhaoshu {
+  background-color: #fff;
+}
+
+.xinshuremai {
+  background-color: #c1c1c1;
+}
+
+.jikemiaosha {
+  background-color: #fff;
+}
+
+.ershouzhuanqu {
+  background-color: #fff;
+}
+
+.content_satrt {
+  border-bottom: 1rpx solid f1f1f1;
+  margin-top: 40rpx;
+}
+
+.content_satrt>.title {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-bottom: 1rpx solid #f1f1f1;
+}
+
+.content_satrt>.title>view {
+  width: 50%;
+  text-align: right;
+}
+.turntodetail{
+  color:#999;
+  font-size:28rpx;
+  margin-right:20rpx;
+}
+
+.content_satrt>.title>view:nth-child(1) {
+  width: 50%;
+  text-align: left;
+  text-indent: 20rpx;
+}
+
+.content_satrt>.ershou {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+}
+
+.ershou>view:nth-child(1) {
+  width: 30%;
+  height: 100%;
+
   text-align: center;
 }
-.example_list .introduce text{
-  height: 80rpx;
-text-overflow: -o-ellipsis-lastline;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  align-content: center;
+
+.ershou>view:nth-child(1)>image {
+  width: 180rpx;
+  height: 180rpx;
+  margin-top: 25rpx;
+  border: 1rpx solid #999;
 }
-.introduce .sku-price{
-  color: red;
-  position: relative;
-  font-size: 35rpx;
+
+.ershou>view:nth-child(2) {
+  width: 50%;
+  height: 210rpx;
+  margin-top: 25rpx;
+}
+
+.ershou>view:nth-child(2)>view {
+  width: 100%;
+  height: 60rpx;
+  font-size: 28rpx;
+  line-height: 60rpx;
+
+}
+
+.ershou>view:nth-child(2)>view:nth-child(1) {
+  color: #000;
+  font-weight: bold;
+}
+
+.ershou>view:nth-child(2)>view:nth-child(1)>text:nth-child(1) {
+  margin: 0;
+}
+
+.ershou>view:nth-child(2)>view:nth-child(1)>text {
+  margin-left: 30rpx;
+}
+
+.ershou>view:nth-child(2)>view:nth-child(2) {
+  color: #FFA54F;
+}
+
+.ershou>view:nth-child(2)>view:nth-child(3) {
+  color: #999;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+}
+
+.ershou>view:nth-child(3) {
+  width: 20%;
+  height: 100%;
+
+}
+
+.ershou>view:nth-child(3)>button {
+  height: 80rpx;
+  width: 80rpx;
+  border-radius: 50%;
+  background: #FFA54F;
+  color: #fff;
+  font-size: 28rpx;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  text-align: center;
+  line-height: 80rpx;
+  margin: 85rpx auto;
+
 }
