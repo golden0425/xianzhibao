@@ -29,7 +29,7 @@
         <image class='select_img {{show&&"select_img_rotate"}}' src='/image/gobottom.png'></image>         
     </view>
     <view class='option_box' style='height:{{show?(selectData.length>5?300:selectData.length*60):0}}rpx;'>
-        <text class='option' style='{{index==selectData.length-1&&"border:0;"}}' wx:for='{{selectData}}' wx:key='this' data-index='{{index}}' catchtap='optionTap'>{{item}}</text>
+        <text class='option' style='{{index==selectData.length-1&&"border:0;"}}' wx:for='{{selectData}}' wx:key='index' data-index='{{index}}' data-item='{{item}}' catchtap='optionTap'>{{item}}</text>
     </view>
 </view>
             </view>
@@ -46,8 +46,7 @@
         <image class='select_img {{showList&&"select_img_rotate"}}' src='/image/gobottom.png'></image>         
     </view>
     <view class='option_box' style='height:{{showList?(selectList.length>5?300:selectList.length*60):0}}rpx;'>
-        <text class='select_text'>{{selectList[value]}}</text>
-        <text class='option' style='{{value==selectList.length-1&&"border:0;"}}' wx:for='{{selectList}}' wx:key='this' data-value='{{value}}' catchtap='optionListTap'>{{item}}</text>
+        <text class='option' style='{{value==selectList.length-1&&"border:0;"}}' wx:for='{{selectList}}' wx:key='index' data-value='{{index}}' data-item='{{item}}' catchtap='optionListTap'>{{item}}</text>
     </view>
 </view></view>
             </view>
@@ -62,8 +61,8 @@
             </radio-group>
               </view>
               
-            </view>
-            <view>
+            </view >
+            <view style='height:150rpx;'>
               <view>产品详情</view>
               <view>
                 <input type="text" placeholder="请输入产品详情"></input>
@@ -71,6 +70,19 @@
             </view>
 
          </view>
+         <block>
+          <text class="issues-label">选择商品图片(至少上传一张)</text>
+          <view class="issues-img-panel">
+              <view class="issues-photo-item add-photo" bindtap="uploadPic" wx:if="{{!isSrc}}"></view>
+              <view wx:if="{{isSrc}}" class="image_box">
+                <view class="issues-photo-item add-photo" bindtap="uploadPic" wx:if="{{isSrc}}"></view>
+                <view class="picPre" wx:for="{{filepath}}">
+                  <image src="{{item}}" mode="aspectFit"></image>
+                  <view bindtap="clearPic" data-index='{{index}}'></view>
+            </view>
+            </view>
+          </view>
+        </block>
          <view class="btn_box"><button>上传图片</button></view>
            <view class="btn_box"><button>发布</button></view>
       </view>
