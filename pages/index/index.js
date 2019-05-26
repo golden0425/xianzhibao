@@ -7,6 +7,7 @@ Page({
     xinshuremai:null,
     jikemiaosha: null,
     ershouzhuanqu: null,
+    publishList:[],
     swiperList:[
       { url: "http://zuul.xpark.highlifes.com/common/image/20190515/1b7014c1-a7db-4108-b32c-9274d19f1864.jpg" },
       { url: "http://zuul.xpark.highlifes.com/common/image/20190515/9a47e064-e867-44e3-9a30-b02dcc84ff11.png" },
@@ -26,9 +27,12 @@ Page({
     this.getPublishs()
   }, 
 
-  getPublishs:()=>{
+  getPublishs:function (){
     api.getpublishs().then((res)=>{
       console.log(res)
+      this.setData({
+        publishList:res.data.rows
+      });
     })
   },
   getProductTopThree:()=>{
