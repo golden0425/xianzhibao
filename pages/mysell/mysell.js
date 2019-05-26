@@ -248,76 +248,74 @@ uploadImage(){
 
   //提交表单
   submitForm:function(e) {
-    this.uploadImage()
+    var goodsname = e.detail.value.goodsname;
+    var content = e.detail.value.content;
+    var mes = e.detail.value.mes;
+    var price = parseFloat(e.detail.value.price); 
+    var sellerphone = e.detail.value.phone; 
+    var sellerWechat = e.detail.value.wechat; 
+    //先进行表单非空验证
+    if (goodsname == "") {
+      wxModal.alert('请输入商品名称')
+    } else if (content == "") {
+      wxModal.alert('请输入商品详细介绍')
+    }
+    else if (!price){
+      wxModal.alert('请确保价格为数字')
+    }
+    else if (sellerphone.length!=11){
+      wxModal.alert('请核对您的联系方式，以方便对方联系您')
+    }
+    else if (sellerWechat == "") {
+      wxModal.alert('请输入您的微信号，以方便对方联系您')
+    }
+    else if (that.data.filepath.length==0) {
+      wxModal.alert('请至少上传一张商品图片')
+    }
+    else {
+      that.setData({
+        goodsname: goodsname,
+        content: content,
+        mes: mes,
+        price: price,
+        sellerphone: sellerphone ,
+        sellerWechat: sellerWechat ,
+      })
 
-    // var goodsname = e.detail.value.goodsname;
-    // var content = e.detail.value.content;
-    // var mes = e.detail.value.mes;
-    // var price = parseFloat(e.detail.value.price); 
-    // var sellerphone = e.detail.value.phone; 
-    // var sellerWechat = e.detail.value.wechat; 
-    // //先进行表单非空验证
-    // if (goodsname == "") {
-    //   wxModal.alert('请输入商品名称')
-    // } else if (content == "") {
-    //   wxModal.alert('请输入商品详细介绍')
-    // }
-    // else if (!price){
-    //   wxModal.alert('请确保价格为数字')
-    // }
-    // else if (sellerphone.length!=11){
-    //   wxModal.alert('请核对您的联系方式，以方便对方联系您')
-    // }
-    // else if (sellerWechat == "") {
-    //   wxModal.alert('请输入您的微信号，以方便对方联系您')
-    // }
-    // else if (that.data.filepath.length==0) {
-    //   wxModal.alert('请至少上传一张商品图片')
-    // }
-    // else {
-    //   that.setData({
-    //     goodsname: goodsname,
-    //     content: content,
-    //     mes: mes,
-    //     price: price,
-    //     sellerphone: sellerphone ,
-    //     sellerWechat: sellerWechat ,
-    //   })
+      wx.showModal({
+        title: '提示',
+        content: '是否确认提交商品信息',
+        success: function (res) {
+          console.log(res)
+          if (res.confirm) {
+            //执行上传操作，异步async
+            that.uploadImage()
 
-    //   wx.showModal({
-    //     title: '提示',
-    //     content: '是否确认提交商品信息',
-    //     success: function (res) {
-    //       console.log(res)
-    //       if (res.confirm) {
-    //         //执行上传操作，异步async
-    //         that.uploadImage()
+            that.setData({
+              isLoading: true,
+              isdisabled: true,
+            });
+            // 延迟函数
+            setTimeout(function () {
+              wx.navigateBack({
+                delta:1,
+              });
+              wx.showToast({
+                title: '提交成功',
+                icon: 'success',
+                duration: 1500
+              });
+            }, 1500);
 
-    //         that.setData({
-    //           isLoading: true,
-    //           isdisabled: true,
-    //         });
-    //         // 延迟函数
-    //         setTimeout(function () {
-    //           wx.navigateBack({
-    //             delta:1,
-    //           });
-    //           wx.showToast({
-    //             title: '提交成功',
-    //             icon: 'success',
-    //             duration: 1500
-    //           });
-    //         }, 1500);
-
-    //       }
-    //     }
-    //   })
-    // }
-    // setTimeout(function () {
-    //   that.setData({
-    //     showTopTips: false
-    //   });
-    // }, 1000);
+          }
+        }
+      })
+    }
+    setTimeout(function () {
+      that.setData({
+        showTopTips: false
+      });
+    }, 1000);
   }
 
 });

@@ -1,11 +1,8 @@
 <view class='container' style='height:{{containHeight-30}}px;'>
 <!-- 头像区区域开始 -->
   <view class="userinfo"> 
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+    <image class="userinfo-avatar" src="{{userInfo.faceImage}}" mode="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickname}}</text>
   </view>
 <!-- 头像区域结束 --> 
 <!-- 列表一开始 -->
@@ -79,12 +76,8 @@
  <view class='bottom'></view>
 <!-- 列表二结束 -->
 <!-- 广告位招租开始 -->
-  <view class='advertisement' style='text-align:center;'>
+  <!-- <view class='advertisement' style='text-align:center;'>
     <image src='../../images/advertisement.png' style='mode:aspectFit;height:100px;'></image>
-  </view>
+  </view> -->
 <!-- 广告位招租结束 -->
-</view>
-
-<view class='description' style='height:30px;width:100%;text-align:center;color:#6E6E6E;font-size:16px;'>
-视时空科技-2019
 </view>

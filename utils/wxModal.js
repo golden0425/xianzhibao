@@ -28,10 +28,16 @@ export default class WxModal {
     content: '您还未授权，授权后可获得完整体验 ',
     confirmText: '一键授权',
     success (res) {
+      console.log(res)
       // 点击一键登录，去授权页面
       if (res.confirm) {
         wx.navigateTo({
           url: '../others/authorization/authorization',
+        })
+      }else{
+        console.log('1')
+        wx.reLaunch({
+          url: '/pages/index/index',
         })
       }
     }
