@@ -13,6 +13,7 @@ Page({
   },
 
   getUserInfo:(e)=> {
+    wxModal.loading()
     if (e.detail.userInfo) {
       wxModal.alert('授权成功')
       api.Login()

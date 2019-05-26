@@ -12,7 +12,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function () {
+  onShow:function(){
     let userInfo= wx.getStorageSync('userInfo');
     if(userInfo){
       this.setData({
@@ -21,6 +21,9 @@ Page({
     }else{
       wxModal.showLoginModal()
     }
+  },
+  onLoad: function () {
+    
   },
 
   getUserInfo: function (e) {
