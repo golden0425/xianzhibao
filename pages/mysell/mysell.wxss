@@ -19,7 +19,7 @@
     font-size: 9pt;
     padding: 4rpx 10rpx;
     border-radius: 3px;
-    margin: 0 5rpx;
+    /* margin: 0 5rpx; */
 }
 .item-hd{
     display: flex;
@@ -28,8 +28,8 @@
 .btn-id {
     flex-shrink: 0;
     color: #aaa;
-    font-size: 10pt;
-    margin-right: 10rpx;
+    /* font-size: 10pt;
+    margin-right: 10rpx; */
 }
 
 .item-bd{
@@ -70,8 +70,10 @@
     font-size: 10pt;
     line-height: 100%;
     color: #999;
-    margin: 25rpx 20rpx 15rpx;
+    margin: 25rpx 20pt 25rpx;
+  
 }
+
 .issues-panel{
     display: flex;
     flex-direction: column;
@@ -94,14 +96,16 @@
 }
 .issues-input{
     border-bottom: 1px solid #e5e5e5;
-    padding: 15rpx 25rpx;
+    padding: 15rpx 0;
+    text-indent: 20pt;
 }
 .issues-input.error{
     background: rgba(231, 138, 176, 0.06);
 }
 .issues-textarea{
     width: 100%;
-    padding: 25rpx;
+    text-indent: 20pt;
+    padding: 20rpx 0;
     min-height: 225rpx;
     box-sizing: border-box;
 }
@@ -170,7 +174,7 @@
     font-size: 12pt;
     line-height: 150%;
     padding: 0;
-    border: none;
+    border: 0;
 }
 .submit-btn.disabled{
     opacity: .7;
@@ -252,6 +256,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: #999;
+}
+.info .info-left view{
+    text-align: right;
+    width: 100%;
+    padding: 10rpx 0;
+    margin-right: 30rpx;
 }
 .price{
   flex: 1;
@@ -269,7 +280,7 @@
   flex: 3;
 }
 .info-right input{
-  border:  2rpx solid #000000;
+  border:  1rpx solid #e3e4e5;
   border-radius: 10rpx;  
   padding: 6rpx;
   margin: 4rpx;
