@@ -31,29 +31,20 @@ Page({
   }, 
 
   getPublishs:function (){
+    let {pageSize,page}=this.data
     let params={
       query:{
-        pageSize:10,
-        page:1
+        pageSize,
+        page
       }
     }
-    api.getpublishs().then((res)=>{
-<<<<<<< HEAD
+    api.getpublishs(params).then((res)=>{
       if(res.status===200){
         this.setData({
           publishList:res.data.rows
         });
       }
       wx.stopPullDownRefresh()
-=======
-      console.log(res)
-      if(res.code==200){
-      this.setData({
-        publishList:res.data.rows
-      });
-      }
-      
->>>>>>> cb3960c0f64a0c61844a52a854646123cac0abfc
     })
   },
   getProductTopThree:()=>{
