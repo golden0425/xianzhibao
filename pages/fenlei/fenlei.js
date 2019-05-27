@@ -153,6 +153,32 @@ Page({
       activeIndex: e.currentTarget.dataset.index,
       scrolltop:0,
     })
+    switch(e.currentTarget.dataset.index) {
+     case 1:
+       this.setData({
+        selectData:['请选择分类','热搜推荐1','热搜推荐2','热搜推荐3','热搜推荐4','热搜推荐5'] 
+       })
+        break;
+     case 2:
+      this.setData({
+        selectData:['请选择分类','精品好物1','精品好物2','精品好物3','精品好物4','精品好物5']
+       })
+        break;
+      case 3:
+       this.setData({
+        selectData:['请选择分类','新品热卖1','新品热卖2','新品热卖3','新品热卖4','新品热卖5']
+       })
+       break;
+      case 4:
+         this.setData({
+        selectData:['请选择分类','即刻秒杀1','即刻秒杀2','即刻秒杀3','即刻秒杀4','即刻秒杀5']
+       })
+      break;
+      default:
+      this.setData({
+        selectData:['请选择分类','1','2','3','4','5','6']
+       })
+} 
   },
   gotodetail:function(res){ 
     var bookid = res.currentTarget.dataset.bookid;
@@ -187,4 +213,5 @@ Page({
     //   ])
     // });
   },
+  
 })

@@ -10,6 +10,7 @@ Page({
     ershouzhuanqu: null,
     publishList:[],
     pageSize:10,
+    flag:true,
     page:1,  
     swiperList:[
       { url: "http://zuul.xpark.highlifes.com/common/image/20190515/1b7014c1-a7db-4108-b32c-9274d19f1864.jpg" },
@@ -31,29 +32,22 @@ Page({
   }, 
 
   getPublishs:function (){
+    let {pageSize,page}=this.data
+
     let params={
       query:{
-        pageSize:10,
-        page:1
+        pageSize,
+        page
       }
     }
-    api.getpublishs().then((res)=>{
-<<<<<<< HEAD
+    api.getpublishs(params).then((res)=>{
+
       if(res.status===200){
         this.setData({
           publishList:res.data.rows
         });
       }
-      wx.stopPullDownRefresh()
-=======
-      console.log(res)
-      if(res.code==200){
-      this.setData({
-        publishList:res.data.rows
-      });
-      }
-      
->>>>>>> cb3960c0f64a0c61844a52a854646123cac0abfc
+      wx.stopPullDownRefresh();
     })
   },
   getProductTopThree:()=>{
@@ -166,28 +160,36 @@ Page({
     }
   },
   onReachBottom:function(){
-    let {pageSize,page}=this.data
-    let params={
-      query:{
-        pageSize,
-        page
-      }
-    }
-    let newPage=this.data.page++
-    console.log(params)
-    api.getpublishs().then((res)=>{
-      if(res.status===200){
-        if(!res.data.total===page){
-          
-        }else{
-          this.setData({
-            publishList:res.data.rows,
-            page:newPage
-          });
+    if(this.data.flag){
+      let {pageSize,page}=this.data
+      let params={
+        query:{
+          pageSize,
+          page
         }
       }
-      wx.stopPullDownRefresh()
-    })
+      console.log('one',this.data.page)
+      let newPage=this.data.page+1;
+      console.log('two',newPage);
+      console.log(params)
+      api.getpublishs(params).then((res)=>{
+        if(res.status===200){
+          console.log(res)
+          if(newPage => res.data.total){ 
+              this.setData({
+                flag:false
+              })
+          }else{
+            this.setData({
+              publishList:res.data.rows,
+              page:newPage
+            });
+          }
+        }
+        wx.stopPullDownRefresh()
+      })
+    }
+
   },
   onPullDownRefresh:function(){
     this.getPublishs()
