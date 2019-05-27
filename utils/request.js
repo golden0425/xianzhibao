@@ -50,6 +50,7 @@ function Requests(url, params={}) {
             'Content-Type':isUpImage || 'application/json; charset=utf-8'
           },
           success: function (res) {
+            console.log(res)
             wxModal.loaded()
             if (res.data == "服务器异常") {
               wx.hideLoading()
@@ -136,6 +137,8 @@ const Login=()=>{
 const getpublishs = params => Requests(`${initUrl}${GET_PUBLISHS}`, params) //获取全部产品
 const sellPublish = params => Requests(`${initUrl}${SELL_PUBLISH}`, params) //发布商品
 const uploadImage = params => Requests(`${initUrl}${UPLOAD_IMAGE}`, params) //上传图片
+const getMyPublishs = params => Requests(`${initUrl}${GET_MY_PUBLISHS}`, params) //我的发布
+
 
 
 
@@ -145,6 +148,7 @@ const LOGIN = 'user/login'
 const GET_PUBLISHS = 'user/getpublishs' 
 const SELL_PUBLISH='user/publish'
 const UPLOAD_IMAGE='user/uploadPuImage'
+const GET_MY_PUBLISHS='user/getmypublishs'
 
 
 
@@ -152,5 +156,6 @@ module.exports={
   Login,
   getpublishs,
   sellPublish,
-  uploadImage
+  uploadImage,
+  getMyPublishs
 }

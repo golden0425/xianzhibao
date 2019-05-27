@@ -1,29 +1,30 @@
 //获取应用实例
+import api from "../../../utils/request";
 var app = getApp();
 Page({
   data: {
-    judgecontent:true,
+    judgecontent:false,
     goods:[],
   },
   onShow:function(){
-    var that = this;
-    wx.request({
-      url: 'https://www.ffgbookbar.cn/BookStoreProject/public/store.php/Index/selfSellShow',
-      data: { openid: app.globalData.openid },
-      method: 'GET',
-      header: { "content-type": "application/json" },
-      success: function (res) {
-        var goods = res.data.reverse(); 
-        that.setData({
-          goods: goods,
-          judgecontent: true,
-        });
-        if (res.data.length == 0)
-          that.setData({
-            judgecontent: false,
-          });
+    let {userId}=wx.getStorageSync('userInfo')
+    if(userId){
+      let params={
+        query:{userId}
       }
-    });
+      api.getMyPublishs(params).then((res)=>{
+        if(res.status===200)
+          if(res.data.rows.length>0)
+            this.setData({
+              goods:res.data.rows,
+              judgecontent:true
+            })
+        console.log(res)
+      })
+    }else{
+      wxModal.showLoginModal()
+    }
+    
   },
   onLoad: function () {
   },
@@ -33,12 +34,7 @@ Page({
   onReady: function (){
   },
   tonewsell: function () {
-    wx.navigateTo({
-      url: '../mysell/mysell',
-      success: function (res){},
-      fail: function (res){},
-      complete: function (res){},
-    })
+    wx.switchTab({ url:'/pages/fenlei/fenlei' });
   },
   goto:function(e){
     var bookid = e.currentTarget.dataset.bookid;

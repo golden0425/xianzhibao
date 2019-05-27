@@ -1,5 +1,6 @@
 import wxModal from "../../utils/wxModal";
 import api from "../../utils/request";
+
 Page({
   data: {
     resoutuijian:null,
@@ -8,6 +9,8 @@ Page({
     jikemiaosha: null,
     ershouzhuanqu: null,
     publishList:[],
+    pageSize:10,
+    page:1,  
     swiperList:[
       { url: "http://zuul.xpark.highlifes.com/common/image/20190515/1b7014c1-a7db-4108-b32c-9274d19f1864.jpg" },
       { url: "http://zuul.xpark.highlifes.com/common/image/20190515/9a47e064-e867-44e3-9a30-b02dcc84ff11.png" },
@@ -28,11 +31,19 @@ Page({
   }, 
 
   getPublishs:function (){
+    let params={
+      query:{
+        pageSize:10,
+        page:1
+      }
+    }
     api.getpublishs().then((res)=>{
-      console.log(res)
-      this.setData({
-        publishList:res.data.rows
-      });
+      if(res.status===200){
+        this.setData({
+          publishList:res.data.rows
+        });
+      }
+      wx.stopPullDownRefresh()
     })
   },
   getProductTopThree:()=>{
@@ -144,6 +155,32 @@ Page({
       }
     }
   },
-
+  onReachBottom:function(){
+    let {pageSize,page}=this.data
+    let params={
+      query:{
+        pageSize,
+        page
+      }
+    }
+    let newPage=this.data.page++
+    console.log(params)
+    api.getpublishs().then((res)=>{
+      if(res.status===200){
+        if(!res.data.total===page){
+          
+        }else{
+          this.setData({
+            publishList:res.data.rows,
+            page:newPage
+          });
+        }
+      }
+      wx.stopPullDownRefresh()
+    })
+  },
+  onPullDownRefresh:function(){
+    this.getPublishs()
+  }
 
 })

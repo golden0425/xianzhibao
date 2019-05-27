@@ -1,5 +1,5 @@
 page{
-  background-color:#F0F0F1;
+  /* background-color:#F0F0F1; */
 }
 .add_btn{
   display: flex;
@@ -16,6 +16,7 @@ page{
 .dfk{
   text-align: center;
   color: #C3C3C3;
+  font-size: 30rpx;
 }
 .center_pic{
   width: 100%;

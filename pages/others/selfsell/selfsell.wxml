@@ -1,7 +1,7 @@
 <wxs module="dateFr" src="../../../utils/dateFr.wxs"></wxs>
 <view hidden="{{judgecontent}}">
   <view class='dfk'> 
-  <image class='center_pic' src='../../../images/nothing.jpg'></image>
+  <image class='center_pic' src='/images/nothing.jpg'></image>
   您还未上传过商品，点击右下角即可上传
   </view>
 </view>
@@ -22,9 +22,9 @@
         </view>
         </view>
       </view>
-      <view class='description' style='height:30px;width:100%;text-align:center;color:#6E6E6E;font-size:16px;'>
+      <!-- <view class='description' style='height:30px;width:100%;text-align:center;color:#6E6E6E;font-size:16px;'>
 视时空科技-2019
-</view>
+</view> -->
     </view>
 </view>
 
