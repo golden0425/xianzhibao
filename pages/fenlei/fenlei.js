@@ -20,12 +20,21 @@ Page({
         tabName: '即刻秒杀'
       }
     ],
+    items:[
+      {name: 'dangmian', value: '当面交易'},
+      {name: 'dangmian', value: '邮寄',checked: 'true'},
+    ],
     ershouzhuanqu: null,
     resoutuijian:null,
     jingpinhaoshu:null,
     xinshuremai:null,
     jikemiaosha:null,
-
+    show:false,//控制下拉列表的显示隐藏，false隐藏、true显示
+    selectData:['请选择分类','1','2','3','4','5','6'],//下拉列表的数据
+    index:0,//选择的下拉列表下标
+    selectList:['请选择分类','全新','9.9成新','9.8成新','9.5成新','9成新'],
+    showList:false,
+    value:0
   },
   search_page: function () {
     wx.navigateTo({
@@ -34,6 +43,33 @@ Page({
       fail: function (res) { },
       complete: function (res) { },
     })
+  },
+  selectTap(){
+    this.setData({
+      show: !this.data.show,
+      showList:false
+    });
+  },
+  selectListTap(){
+   this.setData({
+      showList: !this.data.showList,
+      show:false
+    });
+  },
+  optionListTap(e){
+    let {value,item}=e.currentTarget.dataset;//获取点击的下拉列表的下标
+    this.setData({
+      value:value,
+      showList:!this.data.showList,
+    });
+  }, 
+  // 点击下拉列表
+  optionTap(e){
+    let Index=e.currentTarget.dataset.index;//获取点击的下拉列表的下标
+    this.setData({
+      index:Index,
+      show:!this.data.show,
+    });
   },
 
   onLoad: function (options) {

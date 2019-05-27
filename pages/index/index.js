@@ -38,12 +38,22 @@ Page({
       }
     }
     api.getpublishs().then((res)=>{
+<<<<<<< HEAD
       if(res.status===200){
         this.setData({
           publishList:res.data.rows
         });
       }
       wx.stopPullDownRefresh()
+=======
+      console.log(res)
+      if(res.code==200){
+      this.setData({
+        publishList:res.data.rows
+      });
+      }
+      
+>>>>>>> cb3960c0f64a0c61844a52a854646123cac0abfc
     })
   },
   getProductTopThree:()=>{
