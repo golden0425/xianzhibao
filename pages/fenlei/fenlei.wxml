@@ -26,7 +26,7 @@
              <view class='select_box'>
     <view class='select' catchtap='selectTap'>
         <text class='select_text'>{{selectData[index]}}</text>
-        <image class='select_img {{show&&"select_img_rotate"}}' src='/image/gobottom.png'></image>         
+        <image class='select_img {{show&&"select_img_rotate"}}' src='/image/gobottom.png'></image>
     </view>
     <view class='option_box' style='height:{{show?(selectData.length>5?300:selectData.length*60):0}}rpx;'>
         <text class='option' style='{{index==selectData.length-1&&"border:0;"}}' wx:for='{{selectData}}' wx:key='index' data-index='{{index}}' data-item='{{item}}' catchtap='optionTap'>{{item}}</text>
@@ -43,7 +43,7 @@
               <view><view class='select_box'>
     <view class='select' catchtap='selectListTap'>
         <text class='select_text'>{{selectList[value]}}</text>
-        <image class='select_img {{showList&&"select_img_rotate"}}' src='/image/gobottom.png'></image>         
+        <image class='select_img {{showList&&"select_img_rotate"}}' src='/image/gobottom.png'></image>
     </view>
     <view class='option_box' style='height:{{showList?(selectList.length>5?300:selectList.length*60):0}}rpx;'>
         <text class='option' style='{{value==selectList.length-1&&"border:0;"}}' wx:for='{{selectList}}' wx:key='index' data-value='{{index}}' data-item='{{item}}' catchtap='optionListTap'>{{item}}</text>
@@ -60,7 +60,7 @@
               </label>
             </radio-group>
               </view>
-              
+
             </view >
             <view style='height:150rpx;'>
               <view>产品详情</view>
@@ -76,18 +76,18 @@
               <view class="issues-photo-item add-photo" bindtap="uploadPic" wx:if="{{!isSrc}}"></view>
               <view wx:if="{{isSrc}}" class="image_box">
                 <view class="issues-photo-item add-photo" bindtap="uploadPic" wx:if="{{isSrc}}"></view>
-                <view class="picPre" wx:for="{{filepath}}">
-                  <image src="{{item}}" mode="aspectFit"></image>
-                  <view bindtap="clearPic" data-index='{{index}}'></view>
-            </view>
-            </view>
+                <view class="picPre" wx:for="{{filepath}}" wx:if="{{filepath}}">
+                    <image src="{{item}}" mode="aspectFit"></image>
+                    <view bindtap="clearPic" data-index='{{index}}'></view>
+                </view>
+              </view>
           </view>
         </block>
          <view class="btn_box"><button>上传图片</button></view>
            <view class="btn_box"><button>发布</button></view>
       </view>
       <!-- <view class='ershouzhuanqu' wx:if="{{activeIndex==0}}">
-    <view class="template" wx:for="{{ershouzhuanqu}}" wx:key="{{item.bookid}}">  
+    <view class="template" wx:for="{{ershouzhuanqu}}" wx:key="{{item.bookid}}">
       <view class='item' data-bookid="{{item.bookid}}" data-type='{{item.type}}' bindtap='gotodetail'>
       <view class="productImg">
         <image class='image' src="{{item.book_url}}" mode='aspectFit'></image>
@@ -106,7 +106,7 @@
 <!-- 二手专区结束 -->
       <!-- 热搜推荐 -->
       <!-- <view class='resoutuijian' wx:if="{{activeIndex==1}}">
-    <view class="template" wx:for="{{resoutuijian}}" wx:key="{{item.bookid}}" >  
+    <view class="template" wx:for="{{resoutuijian}}" wx:key="{{item.bookid}}" >
       <view class='item' data-bookid="{{item.bookid}}" data-type='{{item.type}}' bindtap='gotodetail'>
       <view class="productImg">
         <image class='image' src="{{item.book_url}}" mode='aspectFit'></image>
@@ -125,7 +125,7 @@
 <!-- 热搜推荐结束 -->
 <!-- 精品好书 -->
       <!-- <view class='jingpinhaoshu' wx:if="{{activeIndex==2}}">
-    <view class="template" wx:for="{{jingpinhaoshu}}" wx:key="{{item.bookid}}"> 
+    <view class="template" wx:for="{{jingpinhaoshu}}" wx:key="{{item.bookid}}">
       <view class='item' data-bookid="{{item.bookid}}" data-type='{{item.type}}' bindtap='gotodetail'>
       <view class="productImg">
         <image class='image' src="{{item.book_url}}" mode='aspectFit'></image>
@@ -144,7 +144,7 @@
 <!-- 精品好书结束 -->
 <!-- 新书热卖 -->
       <!-- <view class='xinshuremai' wx:if="{{activeIndex==3}}">
-    <view class="template" wx:for="{{xinshuremai}}" wx:key="{{item.bookid}}">  
+    <view class="template" wx:for="{{xinshuremai}}" wx:key="{{item.bookid}}">
       <view class='item' data-bookid="{{item.bookid}}" data-type='{{item.type}}' bindtap='gotodetail'>
       <view class="productImg">
         <image class='image' src="{{item.book_url}}" mode='aspectFit'></image>
@@ -163,7 +163,7 @@
 <!-- 新书热卖结束 -->
 <!-- 即刻秒杀 -->
       <!-- <view class='jikemiaosha' wx:if="{{activeIndex==4}}">
-   <view class="template" wx:for="{{jikemiaosha}}" wx:key="{{item.bookid}}">  
+   <view class="template" wx:for="{{jikemiaosha}}" wx:key="{{item.bookid}}">
       <view class='item' data-bookid="{{item.bookid}}" data-type='{{item.type}}' bindtap='gotodetail'>
       <view class="productImg">
         <image class='image' src="{{item.book_url}}" mode='aspectFit'></image>
