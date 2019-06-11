@@ -1,4 +1,4 @@
 exports.config = {
-  configUrl: "http://1eea26c7.ngrok.io/", //测试环境
-  imgUrl: "http://r2w4905263.qicp.vip:57485/" //图片前缀
+  configUrl: "http://6d18aa30.ngrok.io/", //测试环境
+  imgUrl: "http://rr2w4905263.qicp.vip:55677/" //图片前缀
 };

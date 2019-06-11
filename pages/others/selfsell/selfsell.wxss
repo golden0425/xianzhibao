@@ -82,3 +82,27 @@ page{
   font-weight: 600;
   padding-right: 10rpx;
 }
+.maincontent
+{
+  height: 100%;
+  width: 100%;
+}
+.order-item {
+  height: 240rpx;
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+
+.remove{  
+  width: 160rpx;  
+  height: 100%;  
+  background-color: red; 
+  color: white; 
+  position: absolute;  
+  top: 0;  
+  right: -160rpx;  
+  display: flex;  
+  justify-content: center;  
+  align-items: center;  
+}
