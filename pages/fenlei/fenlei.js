@@ -1,3 +1,4 @@
+import configUrl from "../../config";
 Page({
   data: {
     activeIndex: 0,
@@ -45,7 +46,8 @@ Page({
       "9成新"
     ],
     showList: false,
-    value: 0
+    value: 0,
+    filepath: []
   },
   search_page: function() {
     wx.navigateTo({
@@ -209,76 +211,6 @@ Page({
         });
       }
     });
-    // 获取热搜推荐数据
-    wx.request({
-      url:
-        "https://www.ffgbookbar.cn/BookStoreProject/public/store.php/showBooks",
-      data: { isAll: 1, type: 1 },
-      method: "GET", // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-      header: { "content-type": "application/json" }, // 设置请求的 header
-      success: function(res) {
-        var resoutuijian = res.data.reverse();
-        that.setData({
-          resoutuijian: resoutuijian
-        });
-      }
-    });
-    // 获取精品好书数据
-    wx.request({
-      url:
-        "https://www.ffgbookbar.cn/BookStoreProject/public/store.php/showBooks",
-      data: { isAll: 1, type: 2 },
-      method: "GET", // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-      header: { "content-type": "application/json" }, // 设置请求的 header
-      success: function(res) {
-        var jingpinhaoshu = res.data.reverse();
-        that.setData({
-          jingpinhaoshu: jingpinhaoshu
-        });
-      }
-    });
-    // 获取新书热卖数据
-    wx.request({
-      url:
-        "https://www.ffgbookbar.cn/BookStoreProject/public/store.php/showBooks",
-      data: { isAll: 1, type: 3 },
-      method: "GET", // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-      header: { "content-type": "application/json" }, // 设置请求的 header
-      success: function(res) {
-        var xinshuremai = res.data.reverse();
-        that.setData({
-          xinshuremai: xinshuremai
-        });
-      }
-    });
-    // 获取即刻秒杀数据
-    wx.request({
-      url:
-        "https://www.ffgbookbar.cn/BookStoreProject/public/store.php/showBooks",
-      data: { isAll: 1, type: 4 },
-      method: "GET", // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-      header: { "content-type": "application/json" }, // 设置请求的 header
-      success: function(res) {
-        var jikemiaosha = res.data.reverse();
-        that.setData({
-          jikemiaosha: jikemiaosha
-        });
-      }
-    });
-    // 获取二手旧书数据
-    wx.request({
-      url:
-        "https://www.ffgbookbar.cn/BookStoreProject/public/store.php/showBooks",
-      data: { isAll: 1, type: 5 },
-      method: "GET", // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-      header: { "content-type": "application/json" }, // 设置请求的 header
-      success: function(res) {
-        var ershouzhuanqu = res.data.reverse();
-        that.setData({
-          ershouzhuanqu: ershouzhuanqu
-        });
-      }
-    });
   },
   changeTab: function(e) {
     this.setData({
@@ -362,15 +294,66 @@ Page({
       }
     };
   },
-  getMore: function() {
-    // this.setData({
-    //   contentList: this.data.contentList.concat([
-    //     { text: ' ' },
-    //     { text: ' ' },
-    //     { text: ' ' },
-    //     { text: ' ' },
-    //     { text: ' ' }
-    //   ])
-    // });
+  uploadImage: function() {
+    let initUrl = configUrl.config.configUrl;
+    let that = this;
+    console.log(that.data.userId);
+    let filePathStr = that.data.filepath[0].toString();
+    console.log(filePathStr);
+    wx.uploadFile({
+      url: `${initUrl}user/uploadPuImage`,
+      filePath: filePathStr,
+      name: "file",
+      formData: {
+        userId: that.data.userId
+      },
+      header: {
+        "Content-Type": "application/json"
+      },
+      success: res => {
+        console.log(res);
+        if (res.statusCode === 200) {
+          that.upload(res.data);
+        }
+      }
+    });
+  },
+  upload(res) {
+    let imgUrls = configUrl.config.imgUrl;
+    let imgObj = JSON.parse(res);
+    console.log(imgObj);
+    let params = {
+      query: {
+        userId: this.data.userId, // 用户 id
+        categoryId: "1", //种类 id
+        brandId: "联想", //品牌
+        puImage: `${imgUrls}${imgObj.data.picturePurl}`,
+        puImageb: `${imgUrls}${imgObj.data.thumppicturePurl}`, //上传图片 1 张
+        quantity: "1", //数量
+        miaoshu: this.data.content, //商品详细介绍
+        newold: "全新", //新旧
+        old: "",
+        amount: "1" //沟通次数
+      }
+    };
+    console.log(params);
+    api.sellPublish(params).then(res => {
+      console.log(res);
+    });
+  },
+  onShow() {
+    console.log("onShow");
+    let { userId } = wx.getStorageSync("userInfo");
+    if (!userId) {
+      this.setData({
+        isdisabled: true
+      });
+      wxModal.showLoginModal();
+    } else {
+      this.setData({
+        isdisabled: false,
+        userId: userId
+      });
+    }
   }
 });

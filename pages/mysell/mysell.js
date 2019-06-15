@@ -26,21 +26,7 @@ Page({
     userId: "",
     imgSrc: ""
   },
-  onShow: function() {
-    console.log("onShow");
-    let { userId } = wx.getStorageSync("userInfo");
-    if (!userId) {
-      this.setData({
-        isdisabled: true
-      });
-      wxModal.showLoginModal();
-    } else {
-      this.setData({
-        isdisabled: false,
-        userId: userId
-      });
-    }
-  },
+  onShow: function() {},
   onLoad: function() {
     console.log("onLoad");
     that = this;
@@ -221,7 +207,7 @@ Page({
     let filePathStr = that.data.filepath[0].toString();
     console.log(filePathStr);
     wx.uploadFile({
-      url: "http://6d18aa30.ngrok.io/user/uploadPuImage",
+      url: "http://9326a5a1.ngrok.io/user/uploadPuImage",
       filePath: filePathStr,
       name: "file",
       formData: {

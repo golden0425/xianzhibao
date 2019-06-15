@@ -83,8 +83,8 @@
               </view>
           </view>
         </block>
-         <view class="btn_box"><button>上传图片</button></view>
-           <view class="btn_box"><button>发布</button></view>
+         <!-- <view class="btn_box"><button>上传图片</button></view> -->
+           <view class="btn_box" bindtap="uploadImage"><button>发布</button></view>
       </view>
       <!-- <view class='ershouzhuanqu' wx:if="{{activeIndex==0}}">
     <view class="template" wx:for="{{ershouzhuanqu}}" wx:key="{{item.bookid}}">
