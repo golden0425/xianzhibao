@@ -32,3 +32,13 @@
 <view class='tonewsell' bindtap='tonewsell'>
   <image class="add_icon" src="../../../images/add.png"></image>
 </view>
+<view class="maincontent">
+  <scroll-view scroll-y="{{isScroll}}" style='height:{{windowHeight}}px'>
+    <block wx:key="item" wx:for="{{data}}">
+      <view data-index='{{index}}' class="order-item" bindtouchstart="drawStart" bindtouchmove="drawMove" bindtouchend="drawEnd" style="right:{{item.right}}rpx">
+        <view class="content">{{item.content}}</view>
+        <view class="remove" bindtap="delItem">删除</view>
+      </view>
+    </block>
+  </scroll-view>
+</view>
