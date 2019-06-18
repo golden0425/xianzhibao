@@ -45,7 +45,7 @@
       </view>
       <view class="ershou" wx:for="{{publishList}}" data-bookid="{{item.id}}" wx:key="{{item.id}}">
         <view>
-          <image src="{{tem.puImage}}" mode="scaleToFill" lazy-load="false"></image>
+          <image src="{{item.puImage}}" mode="scaleToFill" lazy-load="false"></image>
         </view>
         <view>
           <view>
@@ -53,7 +53,7 @@
             <text>{{item.newold}}</text>
           </view>
           <view>{{item.nickname}}</view>
-          <view>你就恩发呢积分那节课是觉得受到好的撒娇的后视镜阿迪王{{item.miaoshu}}</view>
+          <view>{{item.miaoshu}}</view>
         </view>
         <view>
           <button>聊聊</button>

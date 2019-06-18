@@ -5,40 +5,30 @@
     您还未上传过商品，点击右下角即可上传
   </view>
 </view>
-<view hidden="{{!judgecontent}}">
-  <!-- <view class='backgroundbar'></view> -->
-  <view class='container'>
-    <view class="ershou" wx:for="{{goods}}" data-bookid="{{item.id}}" wx:key="{{item.id}}">
-      <view>
-        <image src="{{tem.puImage}}" mode="scaleToFill" lazy-load="false"></image>
-      </view>
-      <view>
-        <view>
-          <text>{{item.brandId}}</text>
-          <text>{{item.newold}}</text>
-        </view>
-        <view>{{item.nickname}}</view>
-        <view>你就恩发呢积分那节课是觉得受到好的撒娇的后视镜阿迪王{{item.miaoshu}}</view>
-      </view>
-      <view>
-        <button>聊聊</button>
-      </view>
-    </view>
-    <!-- <view class='description' style='height:30px;width:100%;text-align:center;color:#6E6E6E;font-size:16px;'>
-视时空科技-2019
-</view> -->
-  </view>
-</view>
-<view class='tonewsell' bindtap='tonewsell'>
+<view hidden="{{judgecontent}}" class='tonewsell' bindtap='tonewsell'>
   <image class="add_icon" src="../../../images/add.png"></image>
 </view>
-<view class="maincontent">
-  <scroll-view scroll-y="{{isScroll}}" style='height:{{windowHeight}}px'>
-    <block wx:key="item" wx:for="{{data}}">
-      <view data-index='{{index}}' class="order-item" bindtouchstart="drawStart" bindtouchmove="drawMove" bindtouchend="drawEnd" style="right:{{item.right}}rpx">
-        <view class="content">{{item.content}}</view>
-        <view class="remove" bindtap="delItem">删除</view>
+<view hidden="{{!judgecontent}}">
+  <view class="container" style="margin-top:{{navHeight}}rpx">
+    <scroll-view scroll-y="{{isScroll}}" style='height:{{windowHeight}}px'>
+      <view bindtouchstart="drawStart" bindtouchmove="drawMove" bindtouchend="drawEnd" class="ershou" wx:for="{{goods}}" data-bookid="{{item.id}}" data-index="{{index}}" wx:key="{{item.id}}">
+        <view class="del" style="{{item.txtStyle}}">
+          <view>
+            <image src="{{item.puImage}}" mode="scaleToFill" lazy-load="false"></image>
+          </view>
+          <view>
+            <view>
+              <text>{{item.brandId}}</text>
+              <text>{{item.newold}}</text>
+            </view>
+            <view>{{item.nickname}}</view>
+            <view>{{item.miaoshu}}</view>
+          </view>
+          <view>
+            <button>聊聊</button>
+          </view>
+        </view>
       </view>
-    </block>
-  </scroll-view>
+    </scroll-view>
+  </view>
 </view>

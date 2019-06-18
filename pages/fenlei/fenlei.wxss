@@ -427,8 +427,12 @@ label {
   top: 6rpx;
   width: 15px;
   height: 15px;
-  background: url(http://bmob-cdn-14867.b0.upaiyun.com/2017/11/23/b93323e440f4c3998034dbb9011a1e1d.png) no-repeat;
   background-size: cover;
+}
+
+.picPre image {
+  height: 100%;
+  width: 100%;
 }
 
 

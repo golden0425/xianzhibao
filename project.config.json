@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 15,
+			"current": 16,
 			"list": [
 				{
 					"id": 0,
@@ -131,6 +131,13 @@
 					"id": -1,
 					"name": "我的",
 					"pathName": "pages/others/authorization/authorization",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的出售",
+					"pathName": "pages/others/selfsell/selfsell",
 					"query": "",
 					"scene": null
 				},

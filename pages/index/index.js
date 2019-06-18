@@ -3,59 +3,70 @@ import api from "../../utils/request";
 
 Page({
   data: {
-    resoutuijian:null,
-    jingpinhaoshu:null,
-    xinshuremai:null,
+    resoutuijian: null,
+    jingpinhaoshu: null,
+    xinshuremai: null,
     jikemiaosha: null,
     ershouzhuanqu: null,
-    publishList:[],
-    pageSize:10,
-    flag:true,
-    page:1,  
-    swiperList:[
-      { url: "http://zuul.xpark.highlifes.com/common/image/20190515/1b7014c1-a7db-4108-b32c-9274d19f1864.jpg" },
-      { url: "http://zuul.xpark.highlifes.com/common/image/20190515/9a47e064-e867-44e3-9a30-b02dcc84ff11.png" },
-      { url: "http://zuul.xpark.highlifes.com/common/image/20190515/8ca9ebee-b0f8-4de2-a164-e6e0be848457.png"}],
+    publishList: [],
+    pageSize: 10,
+    flag: true,
+    page: 1,
+    swiperList: [
+      {
+        url:
+          "http://zuul.xpark.highlifes.com/common/image/20190515/1b7014c1-a7db-4108-b32c-9274d19f1864.jpg"
+      },
+      {
+        url:
+          "http://zuul.xpark.highlifes.com/common/image/20190515/9a47e064-e867-44e3-9a30-b02dcc84ff11.png"
+      },
+      {
+        url:
+          "http://zuul.xpark.highlifes.com/common/image/20190515/8ca9ebee-b0f8-4de2-a164-e6e0be848457.png"
+      }
+    ],
     msgList: [
       { url: "url", title: "公告：欢迎来到闲置二手" },
-      { url: "url", title: "公告：夏日炎炎" }],
-    
+      { url: "url", title: "公告：夏日炎炎" }
+    ]
   },
-  search_page:function(){
+  search_page: function() {
     wx.navigateTo({
-      url: '../search_page/search_page',
-    })
+      url: "../search_page/search_page"
+    });
   },
-  
-  onLoad() {
-    this.getPublishs()
-  }, 
 
-  getPublishs:function (){
-    let {pageSize,page}=this.data
-    let params={
-      query:{
+  onLoad() {},
+  onShow() {
+    this.getPublishs();
+  },
+  getPublishs: function() {
+    let { pageSize, page } = this.data;
+    let params = {
+      query: {
         pageSize,
         page
       }
-    }
-    api.getpublishs(params).then((res)=>{
-      if(res.status===200){
+    };
+    api.getpublishs(params).then(res => {
+      if (res.status === 200) {
         this.setData({
-          publishList:res.data.rows
+          publishList: res.data.rows
         });
       }
       wx.stopPullDownRefresh();
-    })
+    });
   },
-  getProductTopThree:()=>{
+  getProductTopThree: () => {
     //热搜推荐前三个数据抓取
     wx.request({
-      url: 'https://www.ffgbookbar.cn/BookStoreProject/public/store.php/showBooks',
-      data: { isAll: 1, 'type': 1 },
-      method: 'GET',
+      url:
+        "https://www.ffgbookbar.cn/BookStoreProject/public/store.php/showBooks",
+      data: { isAll: 1, type: 1 },
+      method: "GET",
       header: { "content-type": "application/json" },
-      success: function (res) {
+      success: function(res) {
         var resoutuijian = res.data.reverse();
         that.setData({
           resoutuijian: resoutuijian
@@ -64,11 +75,12 @@ Page({
     });
     //精品好书前三个数据抓取
     wx.request({
-      url: 'https://www.ffgbookbar.cn/BookStoreProject/public/store.php/showBooks',
-      data: { isAll: 1, 'type': 2 },
-      method: 'GET',
+      url:
+        "https://www.ffgbookbar.cn/BookStoreProject/public/store.php/showBooks",
+      data: { isAll: 1, type: 2 },
+      method: "GET",
       header: { "content-type": "application/json" },
-      success: function (res) {
+      success: function(res) {
         var jingpinhaoshu = res.data.reverse();
         that.setData({
           jingpinhaoshu: jingpinhaoshu
@@ -77,11 +89,12 @@ Page({
     });
     //新书热卖前三个数据抓取
     wx.request({
-      url: 'https://www.ffgbookbar.cn/BookStoreProject/public/store.php/showBooks',
-      data: { isAll: 1, 'type': 3 },
-      method: 'GET',
+      url:
+        "https://www.ffgbookbar.cn/BookStoreProject/public/store.php/showBooks",
+      data: { isAll: 1, type: 3 },
+      method: "GET",
       header: { "content-type": "application/json" },
-      success: function (res) {
+      success: function(res) {
         var xinshuremai = res.data.reverse();
         that.setData({
           xinshuremai: xinshuremai
@@ -90,11 +103,12 @@ Page({
     });
     //即刻秒杀前三个数据抓取
     wx.request({
-      url: 'https://www.ffgbookbar.cn/BookStoreProject/public/store.php/showBooks',
-      data: { isAll: 1, 'type': 4 },
-      method: 'GET',
+      url:
+        "https://www.ffgbookbar.cn/BookStoreProject/public/store.php/showBooks",
+      data: { isAll: 1, type: 4 },
+      method: "GET",
       header: { "content-type": "application/json" },
-      success: function (res) {
+      success: function(res) {
         var jikemiaosha = res.data.reverse();
         that.setData({
           jikemiaosha: jikemiaosha
@@ -103,11 +117,12 @@ Page({
     });
     //二手专区前三个数据抓取
     wx.request({
-      url: 'https://www.ffgbookbar.cn/BookStoreProject/public/store.php/showBooks',
-      data: { isAll: 1, 'type': 5 },
-      method: 'GET',
+      url:
+        "https://www.ffgbookbar.cn/BookStoreProject/public/store.php/showBooks",
+      data: { isAll: 1, type: 5 },
+      method: "GET",
       header: { "content-type": "application/json" },
-      success: function (res) {
+      success: function(res) {
         var ershouzhuanqu = res.data.reverse();
         that.setData({
           ershouzhuanqu: ershouzhuanqu
@@ -116,81 +131,79 @@ Page({
     });
   },
 
-  toDetail:function(e){
+  toDetail: function(e) {
     var bookid = e.currentTarget.dataset.bookid;
-    console.log("您刚点击的书本id为："+bookid);
+    console.log("您刚点击的书本id为：" + bookid);
     wx.navigateTo({
-      url: '../others/details/details?bookid=' + bookid,
+      url: "../others/details/details?bookid=" + bookid,
       success: function(res) {},
       fail: function(res) {},
-      complete: function(res) {},
-    })
+      complete: function(res) {}
+    });
   },
-  resoutuijian:function(){
+  resoutuijian: function() {
     wx.switchTab({
-      url: '../fenlei/fenlei',
-    })
+      url: "../fenlei/fenlei"
+    });
   },
-  jingpinhaoshu:function(){
+  jingpinhaoshu: function() {
     wx.switchTab({
-      url: '../fenlei/fenlei',
-    })
+      url: "../fenlei/fenlei"
+    });
   },
-  xinshuremai: function () {
+  xinshuremai: function() {
     wx.switchTab({
-      url: '../fenlei/fenlei',
-    })
+      url: "../fenlei/fenlei"
+    });
   },
-  onShareAppMessage: function (res) {    
-    if(res.from === "menu"){
-      console.log("来自右上角转发菜单")
+  onShareAppMessage: function(res) {
+    if (res.from === "menu") {
+      console.log("来自右上角转发菜单");
     }
     return {
       title: "肥肥怪书吧",
-      path: '/pages/index/index',
+      path: "/pages/index/index",
       imageUrl: "https://www.ffgbookbar.cn/BookStoreProject/public/index.png",
-      success: (res) => {
+      success: res => {
         console.log("转发成功", res);
       },
-      fail: (res) => {
+      fail: res => {
         console.log("转发失败", res);
       }
-    }
+    };
   },
-  onReachBottom:function(){
-    if(this.data.flag){
-      let {pageSize,page}=this.data
-      let params={
-        query:{
+  onReachBottom: function() {
+    if (this.data.flag) {
+      let { pageSize, page } = this.data;
+      let params = {
+        query: {
           pageSize,
           page
         }
-      }
-      console.log('one',this.data.page)
-      let newPage=this.data.page+1;
-      console.log('two',newPage);
-      console.log(params)
-      api.getpublishs(params).then((res)=>{
-        if(res.status===200){
-          console.log(res)
-          if(newPage => res.data.total){ 
-              this.setData({
-                flag:false
-              })
-          }else{
+      };
+      console.log("one", this.data.page);
+      let newPage = this.data.page + 1;
+      console.log("two", newPage);
+      console.log(params);
+      api.getpublishs(params).then(res => {
+        if (res.status === 200) {
+          console.log(res);
+          if (newPage => res.data.total) {
             this.setData({
-              publishList:res.data.rows,
-              page:newPage
+              flag: false
+            });
+          } else {
+            this.setData({
+              publishList: res.data.rows,
+              page: newPage
             });
           }
         }
-        wx.stopPullDownRefresh()
-      })
+        wx.stopPullDownRefresh();
+      });
     }
-
   },
-  onPullDownRefresh:function(){
-    this.getPublishs()
+  onPullDownRefresh: function() {
+    this.getPublishs();
   }
-
-})
+});

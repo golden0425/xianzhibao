@@ -31,10 +31,12 @@ page {
 .backgroundbar {
   height: 160rpx;
   background: linear-gradient(to right, #00a7ce, #0047ba);
+
 }
 
 .container {
   margin-top: -60rpx;
+
 }
 
 .template_goods {
@@ -100,33 +102,42 @@ page {
 }
 
 .ershou {
+  position: relative;
+
+}
+
+.del {
+  position: relative;
+  top: 0;
+  overflow: hidden;
+  transition: left 0.2s ease-in-out;
   display: flex;
   justify-content: space-between;
   width: 100%;
-
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.ershou>view:nth-child(1) {
+.ershou>.del>view:nth-child(1) {
   width: 30%;
   height: 100%;
-
   text-align: center;
 }
 
-.ershou>view:nth-child(1)>image {
+.ershou>.del>view:nth-child(1)>image {
   width: 180rpx;
   height: 180rpx;
   margin-top: 25rpx;
-  border: 1rpx solid #999;
 }
 
-.ershou>view:nth-child(2) {
+.ershou>.del>view:nth-child(2) {
   width: 50%;
   height: 210rpx;
   margin-top: 25rpx;
 }
 
-.ershou>view:nth-child(2)>view {
+.ershou>.del>view:nth-child(2)>view {
   width: 100%;
   height: 60rpx;
   font-size: 28rpx;
@@ -134,24 +145,24 @@ page {
 
 }
 
-.ershou>view:nth-child(2)>view:nth-child(1) {
+.ershou>.del>view:nth-child(2)>view:nth-child(1) {
   color: #000;
   font-weight: bold;
 }
 
-.ershou>view:nth-child(2)>view:nth-child(1)>text:nth-child(1) {
+.ershou>.del>view:nth-child(2)>view:nth-child(1)>text:nth-child(1) {
   margin: 0;
 }
 
-.ershou>view:nth-child(2)>view:nth-child(1)>text {
+.ershou>.del>view:nth-child(2)>view:nth-child(1)>text {
   margin-left: 30rpx;
 }
 
-.ershou>view:nth-child(2)>view:nth-child(2) {
+.ershou>.del>view:nth-child(2)>view:nth-child(2) {
   color: #FFA54F;
 }
 
-.ershou>view:nth-child(2)>view:nth-child(3) {
+.ershou>.del>view:nth-child(2)>view:nth-child(3) {
   color: #999;
   overflow: hidden;
   white-space: nowrap;
@@ -159,13 +170,13 @@ page {
 
 }
 
-.ershou>view:nth-child(3) {
+.ershou>.del>view:nth-child(3) {
   width: 20%;
   height: 100%;
 
 }
 
-.ershou>view:nth-child(3)>button {
+.ershou>.del>view:nth-child(3)>button {
   height: 80rpx;
   width: 80rpx;
   border-radius: 50%;

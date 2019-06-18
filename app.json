@@ -25,8 +25,7 @@
   },
   "tabBar": {
     "selectedColor": "#F93E02",
-    "list": [
-      {
+    "list": [{
         "pagePath": "pages/index/index",
         "text": "首页",
         "iconPath": "images/home.png",
@@ -34,12 +33,6 @@
       },
       {
         "pagePath": "pages/fenlei/fenlei",
-        "text": "分类",
-        "iconPath": "images/classify.png",
-        "selectedIconPath": "images/classify_HL.png"
-      },
-      {
-        "pagePath": "pages/mysell/mysell",
         "text": "发布",
         "iconPath": "images/classify.png",
         "selectedIconPath": "images/classify_HL.png"

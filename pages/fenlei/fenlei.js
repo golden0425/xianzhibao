@@ -1,4 +1,6 @@
 import configUrl from "../../config";
+import WxModal from "../../utils/wxModal";
+import api from "../../utils/request";
 Page({
   data: {
     activeIndex: 0,
@@ -26,17 +28,12 @@ Page({
       }
     ],
     items: [
-      { name: "dangmian", value: "当面交易" },
-      { name: "dangmian", value: "邮寄", checked: "true" }
+      { name: "当面交易", value: "1", checked: "true" },
+      { name: "邮寄", value: "2" }
     ],
-    ershouzhuanqu: null,
-    resoutuijian: null,
-    jingpinhaoshu: null,
-    xinshuremai: null,
-    jikemiaosha: null,
     show: false, //控制下拉列表的显示隐藏，false隐藏、true显示
+    useDegree: 0, //新旧选择
     selectData: ["请选择分类", "1", "2", "3", "4", "5", "6"], //下拉列表的数据
-    index: 0, //选择的下拉列表下标
     selectList: [
       "请选择分类",
       "全新",
@@ -46,8 +43,12 @@ Page({
       "9成新"
     ],
     showList: false,
-    value: 0,
-    filepath: []
+    filepath: [],
+    isDisabled: false,
+    modelValue: null,
+    radioChange: 1,
+    productDetails: null,
+    classification: 0 //选择的下拉列表下标
   },
   search_page: function() {
     wx.navigateTo({
@@ -72,19 +73,39 @@ Page({
   optionListTap(e) {
     let { value, item } = e.currentTarget.dataset; //获取点击的下拉列表的下标
     this.setData({
-      value: value,
+      useDegree: value,
       showList: !this.data.showList
     });
   },
   // 点击下拉列表
   optionTap(e) {
-    let Index = e.currentTarget.dataset.index; //获取点击的下拉列表的下标
+    let Index = +e.currentTarget.dataset.index; //获取点击的下拉列表的下标
     this.setData({
-      index: Index,
+      classification: Index,
       show: !this.data.show
     });
   },
-
+  getModel(e) {
+    let modelValue = e.detail.value;
+    this.setData({
+      modelValue: modelValue
+    });
+    console.log(modelValue);
+  },
+  radioChange(e) {
+    console.log(e);
+    let radioChange = +e.detail.value;
+    this.setData({
+      radioChange: radioChange
+    });
+  },
+  getProductDetails(e) {
+    console.log(e);
+    let productDetails = e.detail.value;
+    this.setData({
+      productDetails: productDetails
+    });
+  },
   //上传图片
   uploadPic: function() {
     let that = this;
@@ -136,6 +157,7 @@ Page({
                 );
               }
             });
+
             // wx.chooseImage({
             //   count: 1, // 默认9
             //   sizeType: ['compressed'], //压缩图
@@ -180,10 +202,15 @@ Page({
     }
   },
   //删除图片
-  clearPic: function(event) {
+  clearPic: function(e) {
     //删除图片
-    console.log(event);
-    var index = event.currentTarget.dataset.index;
+    let that = this;
+    let index;
+    if (e) {
+      index = e.currentTarget.dataset.index;
+    } else {
+      index = 0;
+    }
     var filepath = that.data.filepath;
     filepath.splice(index, 1);
     that.setData({
@@ -213,6 +240,7 @@ Page({
     });
   },
   changeTab: function(e) {
+    this.initDatd();
     this.setData({
       activeIndex: e.currentTarget.dataset.index,
       scrolltop: 0
@@ -272,33 +300,82 @@ Page({
         });
     }
   },
-  gotodetail: function(res) {
-    var bookid = res.currentTarget.dataset.bookid;
-    wx.navigateTo({
-      url: "../others/details/details?bookid=" + bookid
+  initDatd() {
+    this.setData({
+      show: false,
+      classification: 0,
+      modelValue: null,
+      productDetails: null,
+      classification: 0,
+      useDegree: 0,
+      radioChange: 1,
+      imgSrc: null
     });
+    this.clearPic();
   },
-  onShareAppMessage: function(res) {
-    if (res.from === "menu") {
-      console.log("来自右上角转发菜单");
-    }
-    return {
-      title: "肥肥怪书吧",
-      path: "/pages/index/index",
-      imageUrl: "https://www.ffgbookbar.cn/BookStoreProject/public/index.png",
-      success: res => {
-        console.log("转发成功", res);
-      },
-      fail: res => {
-        console.log("转发失败", res);
-      }
-    };
-  },
+  // gotodetail: function(res) {
+  //   var bookid = res.currentTarget.dataset.bookid;
+  //   wx.navigateTo({
+  //     url: "../others/details/details?bookid=" + bookid
+  //   });
+  // },
+  // onShareAppMessage: function(res) {
+  //   if (res.from === "menu") {
+  //     console.log("来自右上角转发菜单");
+  //   }
+  //   return {
+  //     title: "肥肥怪书吧",
+  //     path: "/pages/index/index",
+  //     imageUrl: "https://www.ffgbookbar.cn/BookStoreProject/public/index.png",
+  //     success: res => {
+  //       console.log("转发成功", res);
+  //     },
+  //     fail: res => {
+  //       console.log("转发失败", res);
+  //     }
+  //   };
+  // },
   uploadImage: function() {
+    WxModal.loading();
+    let { modelValue, productDetails, classification, useDegree } = this.data;
+    this.setData({
+      isDisabled: true
+    });
     let initUrl = configUrl.config.configUrl;
     let that = this;
-    console.log(that.data.userId);
+    if (!classification) {
+      WxModal.alert("请选择产品分类");
+      this.setData({
+        isDisabled: false
+      });
+      return;
+    } else if (!modelValue) {
+      WxModal.alert("请输入产品型号");
+      this.setData({
+        isDisabled: false
+      });
+      return;
+    } else if (!useDegree) {
+      WxModal.alert("请选择产品新旧程度");
+      this.setData({
+        isDisabled: false
+      });
+      return;
+    } else if (!productDetails) {
+      WxModal.alert("请输入产品详情");
+      this.setData({
+        isDisabled: false
+      });
+      return;
+    } else if (!that.data.filepath[0]) {
+      WxModal.alert("请选择产品图片");
+      this.setData({
+        isDisabled: false
+      });
+      return;
+    }
     let filePathStr = that.data.filepath[0].toString();
+
     console.log(filePathStr);
     wx.uploadFile({
       url: `${initUrl}user/uploadPuImage`,
@@ -315,23 +392,31 @@ Page({
         if (res.statusCode === 200) {
           that.upload(res.data);
         }
+      },
+      fail: err => {
+        WxModal.toast({ title: "系统错误", icon: "none " });
+        this.setData({
+          isDisabled: false
+        });
       }
     });
   },
   upload(res) {
     let imgUrls = configUrl.config.imgUrl;
     let imgObj = JSON.parse(res);
+    let { modelValue, productDetails, classification, useDegree } = this.data;
+
     console.log(imgObj);
     let params = {
       query: {
         userId: this.data.userId, // 用户 id
-        categoryId: "1", //种类 id
-        brandId: "联想", //品牌
+        categoryId: classification, //种类 id
+        brandId: modelValue, //品牌
         puImage: `${imgUrls}${imgObj.data.picturePurl}`,
         puImageb: `${imgUrls}${imgObj.data.thumppicturePurl}`, //上传图片 1 张
         quantity: "1", //数量
-        miaoshu: this.data.content, //商品详细介绍
-        newold: "全新", //新旧
+        miaoshu: productDetails, //商品详细介绍
+        newold: useDegree, //新旧
         old: "",
         amount: "1" //沟通次数
       }
@@ -339,6 +424,14 @@ Page({
     console.log(params);
     api.sellPublish(params).then(res => {
       console.log(res);
+      if (res.status === 200) {
+        WxModal.toast("发布成功");
+        this.initDatd();
+      }
+      this.setData({
+        isDisabled: false
+      });
+      WxModal.loaded();
     });
   },
   onShow() {
@@ -356,4 +449,8 @@ Page({
       });
     }
   }
+  // onHide() {
+  //   this.initDatd();
+  //   console.log("onHide");
+  // }
 });
